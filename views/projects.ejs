@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500&display=swap');
+        *, html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      }
+
+      html ,body {
+        min-height: 100vh;
+        background-color: #f1f1f1;
+      }
+
+      main {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      } 
+
+      .l-sidebar {
+        min-height: 100vh;
+        width: 240px;
+        background-color: #203B46;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      }
+      .main-section {
+        height: 100%;
+        flex: 1;
+      }
+      .main-section-r1 {
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+      }
+      .dashboard-header {
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px solid #A9C8DA;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .dashboard-title {
+        height: 100%;
+        padding-left: 1.75rem;
+        display: flex;
+        align-items: center;
+        font-family: 'Roboto Flex', sans-serif;
+        color: #333333;
+        display: flex;
+        align-items: center;
+      }
+      .dashboard-sep {
+        display: flex;
+        align-items: center;
+        margin: 0 0.5rem;
+        font-size: 18px;
+      }
+      .dashboard-sep span {
+        display: flex;
+        align-items: center;
+      }
+      .title-text {
+        font-weight: 600;
+      }
+      .main-section-r2 {
+        width: 100%;
+        min-height: calc(100vh - 60px);
+        display: flex;
+      }
+
+      .main-section-r2-c1 {
+        flex: 1;
+        height: 100%;
+        padding: 1rem;
+      }
+      .main-section-r2-c2 {
+        width: 220px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+
+      .controls {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        
+      }
+
+
+/* CSS */
+    .controls button {
+      background-color: #376681;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'Roboto Flex', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.15385;
+      margin: 0;
+      outline: none;
+      padding: 8px .8em;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      white-space: nowrap;
+      transition: 0.2s all ease-in-out;
+    }
+
+    .controls button:hover {
+      background-color: #4987AB;
+    }
+      .table-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Roboto Flex', sans-serif;
+        padding: 0;
+        border: 1px solid #dede;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .thead-row {
+        border-bottom: 1px solid #f2f2f2;
+      }
+      .thead-row th {
+        font-size: 13px;
+        color: #333333;
+        line-height: 1.4;
+        text-transform: uppercase;
+        
+      }
+      tbody tr {
+        border-bottom: 1px solid #f2f2f2;
+      }
+
+      th, td {
+        padding-left: 1rem;
+        padding-right: 2rem;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        font-size: 13px;
+        text-align: center;
+      }
+      td {
+        color: #666666;
+      }
+      td a, td button {
+        padding-right: 5px;
+        font-family: 'Roboto Flex', sans-serif;
+        font-size: 13px;
+        color: #666666;
+        
+      }
+
+      .btn-view:hover {
+        color: #2A9D8F;
+      }
+      .btn-edit {
+        padding: 0;
+        border: 0;
+        background: none;
+        text-decoration: underline;
+        margin-right: 5px;
+      }
+      .btn-edit:hover {
+        color: #E2B33C;
+      }
+      .btn-delete:hover {
+        color: #E24D28;
+      }
+
+    </style>
+    <style>
+      .profile-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: 'Roboto Flex', sans-serif;
+        padding-bottom: 40px;
+      }
+      .profile-image {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .profile-image img {
+        margin-top: 40px;
+        border-radius: 50%;
+        width: 130px;
+      }
+      .user-name {
+        margin-top: 1.25rem;
+        width: 100%;
+        color: #A9C8DA;
+        font-size: 15px;
+        font-weight: 500;
+        text-align: center;
+      }
+      .user-title {
+        margin-top: 0.5rem;
+        width: 100%;
+        color: #A9C8DA;
+        font-size: 15px;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .dashboard-navigation {
+        width: 100%;
+        height: auto;
+        font-family: 'Roboto Flex', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .dashboard-navigation ul{
+        list-style-type: none;
+        border-bottom: 1px solid #2f5564;
+      }
+
+      .dashboard-navigation ul a {
+        text-decoration: none;
+      }
+      .dashboard-navigation ul li{
+        height: 42px;
+        padding-left: 1rem;
+        border-top: 1px solid #2f5564;
+        color: #A9C8DA;
+        display: flex;
+        align-items: center;
+        transition: 0.2s all ease-in-out;
+      }
+
+      .dashboard-navigation ul li:hover, .dashboard-navigation ul li.active  {
+        background-color: #A9C8DA;
+        color: #333333;
+        cursor: pointer;
+      }
+
+
+    </style>
+    <style>
+      .form-overlay{
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-color: #080f11e3;
+        display: none;
+        cursor: pointer;
+      }
+      .form-background-1, .form-background-2  {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        pointer-events: none;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+      .form-overlay.active, .form-background-1.active, .form-background-2.active{
+        display:flex;
+      }
+      .form-container{
+        width: 400px;
+        height: auto;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        pointer-events:visibleFill;
+        padding: 2rem 2rem;
+      }
+
+      
+      .form-container form {
+        font-family: 'Roboto Flex', sans-serif;
+      }
+
+      .control-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .control-group label {
+        font-weight: 600;
+        font-size: 13px;
+        color: #333333;
+        text-transform: uppercase;
+        
+
+      }
+      .control-group input {
+        margin-top: .25rem;
+        width: 100%;
+        height: 32px;
+        border: 0;
+        border: 1px solid #203B46;
+        border-radius: 4px;
+        color: #333333;
+        font-family: 'Roboto Flex', sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 0 0.5rem;
+      }
+      .control-group textarea {
+        margin-top: .25rem;
+        width: 100%;
+        resize: none;
+        border: 0;
+        border: 1px solid #203B46;
+        border-radius: 4px;
+        color: #333333;
+        font-family: 'Roboto Flex', sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        padding: .5rem;
+      }
+
+      .control-group input:focus, .control-group textarea:focus {
+        outline: 0;
+      }
+
+      .submit-section {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .submit-section .controls button {
+        margin-top: 1rem;
+      }
+
+      .close-section{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        font-family: 'Roboto Flex', sans-serif;
+        font-size: 13px;
+        color: #666666;
+        text-decoration: underline;
+        margin-bottom: 1.5rem;
+        transition: 0.2s all ease-in-out;
+      }
+      .close-btn span:hover {
+        color: #333333;
+        cursor: pointer;
+      }
+
+    </style>
+    <script>
+            function validate() {
+      
+      if( document.addProject.project_title.value == "" ) {
+         alert( "Project title is required" );
+         document.addProject.project_title.focus() ;
+         return false;
+      }
+      if( document.addProject.project_desc.value == "" ) {
+         alert( "Project description is required" );
+         document.addProject.project_desc.focus() ;
+         return false;
+      }
+      if( document.addProject.project_strt.value == "" ) {
+         alert( "A start date is required" );
+         document.addProject.project_strt.focus() ;
+         return false;
+      }
+      if( document.addProject.project_due.value == "" ) {
+         alert( "A due date is required" );
+         document.addProject.project_due.focus() ;
+         return false;
+      }
+
+      return( true );
+      document.addProject.reset();
+
+   }
+    </script>
+</head>
+
+<body>
+  <main class="main-wrapper">
+    <div class="form-overlay" onclick="addProjectToggle()">
+    </div>
+    <div class="form-background-1">
+      <div class="form-container">
+        <div class="close-section">
+          <div class="close-btn">
+            <span onclick="addProjectToggle()">Close</span>
+          </div>
+        </div>
+        <form class="addProjectForm" name="addProject" action="/projects/add" method="post" onsubmit="validate()">
+          <div class="control-group">
+              <label for="project_title">Project Title</label> <br>
+              <input type="text" name="project_title" id="project_title">
+          </div>
+          <div class="control-group">
+              <label for="project_desc">Project Description</label> <br>
+              <textarea name="project_desc" id="project_desc" cols="30" rows="10"></textarea>
+          </div>
+          <div class="control-group">
+              <label for="project_strt">Project Start</label> <br>
+              <input type="date" name="project_strt" id="project_strt">
+          </div>
+          <div class="control-group">
+              <label for="project_due">Project Due</label> <br>
+              <input type="date" name="project_due" id="project_due">
+          </div>
+          <div class="submit-section">
+            <div class="controls">
+              <button type="submit">Add Project</button>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="form-background-2">
+      <div class="form-container">
+        <div class="close-section">
+          <div class="close-btn">
+            <span onclick="editProjectToggle()">Close</span>
+          </div>
+        </div>
+        <form class="editProjectForm" name="editProject" action="/projects/update/:id" method="post" onsubmit="validate()">
+          <div class="control-group">
+              <label for="project_title">Project Title</label> <br>
+              <input type="text" name="project_title" id="project_title">
+          </div>
+          <div class="control-group">
+              <label for="project_desc">Project Description</label> <br>
+              <textarea name="project_desc" id="project_desc" cols="30" rows="10"></textarea>
+          </div>
+          <div class="control-group">
+              <label for="project_strt">Project Start</label> <br>
+              <input type="date" name="project_strt" id="project_strt">
+          </div>
+          <div class="control-group">
+              <label for="project_due">Project Due</label> <br>
+              <input type="date" name="project_due" id="project_due">
+          </div>
+          <div class="submit-section">
+            <div class="controls">
+              <button type="submit">Update Project</button>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="l-sidebar">
+      <div class="profile-section">
+        <div class="profile-image">
+          <img src="/img/pp.jpg">
+        </div>
+        <div class="user-name">
+          <span>Jason Vaz</span>
+        </div>
+        <div class="user-title">
+          <span>Trainer</span>
+        </div>
+      </div>
+      <div class="dashboard-navigation">
+        <ul>
+          <li>Dashboard</li>
+          <a href="/projects"><li class="active">Projects</li></a>
+          <a href="/notes"><li>Notes</li></a>
+          <li>Students</li>
+          <li>Account</li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-section" >
+      <div class="main-section-r1">
+        <div class="dashboard-header">
+          <div class="dashboard-title">
+            <span class="title-text">Dashboard</span> 
+            <span class="dashboard-sep">&rsaquo;</span>
+            <span>Projects</span>
+          </div>
+        </div>
+      </div>
+      <div class="main-section-r2">
+        <div class="main-section-r2-c1">
+          <div class="controls">
+              <button onclick="addProjectToggle()">Add Project</button>
+          </div>
+          <div class="table-section">
+            <table class="table">
+            <thead>
+              <tr class="thead-row">
+                <th>ID#</th>
+                <th>Project Title</th>
+                <th>Project Description</th>
+                <th>Notes</th>
+                <th>Project Start Date</th>
+                <th>Project Due Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(data.length){
+             
+              for(var i = 0; i< data.length; i++) {%>  
+              <tr>
+                  <td><%= data[i].id %></td>
+                  <td><%= data[i].proj_title%></td>
+                  <td><%= data[i].proj_desc%></td>
+                  <td><a class="btn-view" href="/students/students/edit/<%=data[i].Id%>">View</a></td>
+                  <td><%= new Date(data[i].proj_strt).toLocaleDateString() %></td>
+                  <td><%= new Date(data[i].proj_due).toLocaleDateString() %></td>
+                  <td>
+                    <a class="btn-edit" href="/projects/edit/<%=data[i].id%>">Edit</a>                                               
+                  <a class="btn-delete" href="/projects/<%=data[i].id%>/delete">Delete</a>                                            
+                </td>
+              </tr>
+              <% }
+      
+            }%>
+              </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="main-section-r2-c2">
+
+        </div>
+    </div>
+  </main>
+  
+
+  <script>
+    var overlay = document.querySelector('.form-overlay');
+    var frmBG1 = document.querySelector('.form-background-1');
+    var frmBG2 = document.querySelector('.form-background-2');
+    var click = false;
+    function addProjectToggle() {
+      overlay.classList.toggle('active');
+      frmBG1.classList.toggle('active');
+    }
+    function editProjectToggle() {
+      overlay.classList.toggle('active');
+      frmBG2.classList.toggle('active');
+    }
+
+      
+  </script>
+</body>
+</html>

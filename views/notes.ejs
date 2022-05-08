@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500&display=swap');
+        *, html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      }
+
+      html ,body {
+        min-height: 100vh;
+        background-color: #f1f1f1;
+      }
+
+      main {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      } 
+
+      .l-sidebar {
+        min-height: 100vh;
+        width: 240px;
+        background-color: #203B46;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      }
+      .main-section {
+        height: 100%;
+        flex: 1;
+      }
+      .main-section-r1 {
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+      }
+      .dashboard-header {
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px solid #A9C8DA;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .dashboard-title {
+        height: 100%;
+        padding-left: 1.75rem;
+        display: flex;
+        align-items: center;
+        font-family: 'Roboto Flex', sans-serif;
+        color: #333333;
+        display: flex;
+        align-items: center;
+      }
+      .dashboard-sep {
+        display: flex;
+        align-items: center;
+        margin: 0 0.5rem;
+        font-size: 18px;
+      }
+      .dashboard-sep span {
+        display: flex;
+        align-items: center;
+      }
+      .title-text {
+        font-weight: 600;
+      }
+      .main-section-r2 {
+        width: 100%;
+        min-height: calc(100vh - 60px);
+        display: flex;
+      }
+
+      .main-section-r2-c1 {
+        flex: 1;
+        height: 100%;
+        padding: 1rem;
+      }
+      .main-section-r2-c2 {
+        width: 220px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+
+      .controls {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        
+      }
+
+
+/* CSS */
+    .controls button {
+      background-color: #376681;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'Roboto Flex', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.15385;
+      margin: 0;
+      outline: none;
+      padding: 8px .8em;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      white-space: nowrap;
+      transition: 0.2s all ease-in-out;
+    }
+
+    .controls button:hover {
+      background-color: #4987AB;
+    }
+      .table-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Roboto Flex', sans-serif;
+        padding: 0;
+        border: 1px solid #dede;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .thead-row {
+        border-bottom: 1px solid #f2f2f2;
+      }
+      .thead-row th {
+        font-size: 13px;
+        color: #333333;
+        line-height: 1.4;
+        text-transform: uppercase;
+        
+      }
+      tbody tr {
+        border-bottom: 1px solid #f2f2f2;
+      }
+
+      th, td {
+        padding-left: 1rem;
+        padding-right: 2rem;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        font-size: 13px;
+        text-align: center;
+      }
+      td {
+        color: #666666;
+      }
+      td a {
+        padding-right: 5px;
+        font-family: 'Roboto Flex', sans-serif;
+        font-size: 13px;
+        color: #666666;
+        
+      }
+
+      .btn-view:hover {
+        color: #2A9D8F;
+      }
+      .btn-edit:hover {
+        color: #E2B33C;
+      }
+      .btn-delete:hover {
+        color: #E24D28;
+      }
+
+    </style>
+    <style>
+      .profile-section {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: 'Roboto Flex', sans-serif;
+        padding-bottom: 40px;
+      }
+      .profile-image {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .profile-image img {
+        margin-top: 40px;
+        border-radius: 50%;
+        width: 130px;
+      }
+      .user-name {
+        margin-top: 1.25rem;
+        width: 100%;
+        color: #A9C8DA;
+        font-size: 15px;
+        font-weight: 500;
+        text-align: center;
+      }
+      .user-title {
+        margin-top: 0.5rem;
+        width: 100%;
+        color: #A9C8DA;
+        font-size: 15px;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .dashboard-navigation {
+        width: 100%;
+        height: auto;
+        font-family: 'Roboto Flex', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .dashboard-navigation ul{
+        list-style-type: none;
+        border-bottom: 1px solid #2f5564;
+      }
+
+      .dashboard-navigation ul a {
+        text-decoration: none;
+      }
+      .dashboard-navigation ul li{
+        height: 42px;
+        padding-left: 1rem;
+        border-top: 1px solid #2f5564;
+        color: #A9C8DA;
+        display: flex;
+        align-items: center;
+        transition: 0.2s all ease-in-out;
+      }
+
+      .dashboard-navigation ul li:hover, .dashboard-navigation ul li.active  {
+        background-color: #A9C8DA;
+        color: #333333;
+        cursor: pointer;
+      }
+
+
+    </style>
+    <style>
+      .form-overlay{
+        
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-color: #0e1c20e3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+      .form-container{
+        width: 400px;
+        height: 600px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+      }
+    </style>
+</head>
+<body>
+  <main class="main-wrapper">
+    <div class="form-overlay">
+        <div class="form-container">
+        </div>
+    </div>
+    <div class="l-sidebar">
+      <div class="profile-section">
+        <div class="profile-image">
+          <img src="/img/pp.jpg">
+        </div>
+        <div class="user-name">
+          <span>Jason Vaz</span>
+        </div>
+        <div class="user-title">
+          <span>Trainer</span>
+        </div>
+      </div>
+      <div class="dashboard-navigation">
+        <ul>
+          <li>Dashboard</li>
+          <a href="/projects"><li>Projects</li></a>
+          <a href="/notes"><li class="active">Notes</li></a>
+          <li>Students</li>
+          <li>Account</li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-section" >
+      <div class="main-section-r1">
+        <div class="dashboard-header">
+          <div class="dashboard-title">
+            <span class="title-text">Dashboard</span> 
+            <span class="dashboard-sep">&rsaquo;</span>
+            <span>Projects</span>
+            <span class="dashboard-sep">&rsaquo;</span>
+            <span>Notes</span>
+          </div>
+        </div>
+      </div>
+      <div class="main-section-r2">
+        <div class="main-section-r2-c1">
+          <div class="table-section">
+
+          </div>
+        </div>
+        <div class="main-section-r2-c2">
+
+        </div>
+    </div>
+  </main>
+  
+</body>
+</html>
