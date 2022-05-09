@@ -532,7 +532,7 @@
                   <td><%= data[i].id %></td>
                   <td><%= data[i].proj_title%></td>
                   <td><%= data[i].proj_desc%></td>
-                  <td><a class="btn-view" href="/students/students/edit/<%=data[i].Id%>">View</a></td>
+                  <td><a class="btn-view" href="projects/<%=data[i].id%>/note">View</a></td>
                   <td><%= new Date(data[i].proj_strt).toLocaleDateString() %></td>
                   <td><%= new Date(data[i].proj_due).toLocaleDateString() %></td>
                   <td>

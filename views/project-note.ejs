@@ -96,7 +96,7 @@
 
 
 /* CSS */
-    .controls button {
+    .controls button, .ctrl-link {
       background-color: #376681;
       border: 1px solid transparent;
       border-radius: 3px;
@@ -123,8 +123,11 @@
       transition: 0.2s all ease-in-out;
     }
 
-    .controls button:hover {
+    .controls button:hover, .ctrl-link:hover {
       background-color: #4987AB;
+    }
+    .ctrl-link {
+      margin-left: 8px;
     }
       .table-section {
         width: 100%;
@@ -162,7 +165,7 @@
         width: 15%;
       }
       .col-3 {
-        width: 40%;
+        width: 55%;
       }
       tbody tr {
         border-bottom: 1px solid #f2f2f2;
@@ -391,19 +394,24 @@
     <script>
             function validate() {
       
-      if( document.addProject.project_id.value == "" ) {
-         alert( "Project id is required" );
+      if( document.addProject.project_title.value == "" ) {
+         alert( "Project title is required" );
          document.addProject.project_title.focus() ;
          return false;
       }
-      if( document.addProject.notes.value == "" ) {
-         alert( "Project notes is required" );
+      if( document.addProject.project_desc.value == "" ) {
+         alert( "Project description is required" );
          document.addProject.project_desc.focus() ;
          return false;
       }
-      if( document.addProject.active_dt.value == "" ) {
-         alert( "Active date is required" );
+      if( document.addProject.project_strt.value == "" ) {
+         alert( "A start date is required" );
          document.addProject.project_strt.focus() ;
+         return false;
+      }
+      if( document.addProject.project_due.value == "" ) {
+         alert( "A due date is required" );
+         document.addProject.project_due.focus() ;
          return false;
       }
 
@@ -427,20 +435,24 @@
         </div>
         <form class="addProjectForm" name="addProject" action="/projects/add" method="post" onsubmit="validate()">
           <div class="control-group">
-              <label for="project_id">Project ID</label> <br>
-              <input type="number" name="project_id" id="project_id">
+              <label for="project_title">Project Title</label> <br>
+              <input type="text" name="project_title" id="project_title">
           </div>
           <div class="control-group">
-              <label for="notes">Notes</label> <br>
-              <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+              <label for="project_desc">Project Description</label> <br>
+              <textarea name="project_desc" id="project_desc" cols="30" rows="10"></textarea>
           </div>
           <div class="control-group">
-              <label for="active_dt">Active Date</label> <br>
-              <input type="date" name="active_dt" id="active_dt">
+              <label for="project_strt">Project Start</label> <br>
+              <input type="date" name="project_strt" id="project_strt">
+          </div>
+          <div class="control-group">
+              <label for="project_due">Project Due</label> <br>
+              <input type="date" name="project_due" id="project_due">
           </div>
           <div class="submit-section">
             <div class="controls">
-              <button type="submit">Add Notes</button>
+              <button type="submit">Add Project</button>
           </div>
           </div>
         </form>
@@ -472,7 +484,7 @@
           </div>
           <div class="submit-section">
             <div class="controls">
-              <button type="submit">Update Project</button>
+              <but type="submit">Update Project</but>
           </div>
           </div>
         </form>
@@ -494,7 +506,7 @@
         <ul>
           <li>Dashboard</li>
           <a href="/projects"><li>Projects</li></a>
-          <a href="/notes"><li class="active">Notes</li></a>
+          <a href="/notes"><li>Notes</li></a>
           <li>Students</li>
           <li>Account</li>
         </ul>
@@ -506,7 +518,7 @@
           <div class="dashboard-title">
             <span class="title-text">Dashboard</span> 
             <span class="dashboard-sep">&rsaquo;</span>
-            <span>Projects</span>
+            <span>Projects </span>
             <span class="dashboard-sep">&rsaquo;</span>
             <span>Notes</span>
           </div>
@@ -515,16 +527,16 @@
       <div class="main-section-r2">
         <div class="main-section-r2-c1">
           <div class="controls">
-              <button onclick="addProjectToggle()">Add Notes</button>
+              <a class="ctrl-link" href="/projects">View All Projects</a>
+              <a class="ctrl-link" href="/notes">View All Notes</a>
           </div>
           <div class="table-section">
             <table class="table">
             <thead>
               <tr class="thead-row">
-                <th class="col-1">ID#</th>
                 <th class="col-2">Project ID</th>
+                <th class="col-2">Project Title</th>
                 <th class="col-3">Project Notes</th>
-                <th class="col-4">Active Date</th>
               </tr>
             </thead>
             <tbody>
@@ -532,13 +544,10 @@
              
               for(var i = 0; i< data.length; i++) {%>  
               <tr>
-                  <td class="col-1"><%= data[i].id %></td>
-                  <td class="col-2"><%= data[i].proj_id%></td>
+                  <td class="col-1"><%= data[i].proj_id%></td>
+                  <td class="col-2"><%= data[i].proj_title%></td>
                   <td class="col-3"><%= data[i].notes%></td>
-                  <td class="col-4"><%= new Date(data[i].active_dt).toLocaleDateString() %></td>
-                  <td class="col-5">
-                    <a class="btn-edit" href="/projects/edit/<%=data[i].id%>">Edit</a>                                               
-                  <a class="btn-delete" href="/notes/<%=data[i].id%>/delete">Delete</a>                                            
+                  <td class="col-4">                                       
                 </td>
               </tr>
               <% }

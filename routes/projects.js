@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const mysqlConnection = require('../database')
 
+
+
     router.get("/", (req, res) =>{
     mysqlConnection.query("SELECT * FROM crudproject.projects", (err, rows, fields) =>{
         if(!err)
@@ -21,6 +23,19 @@ const mysqlConnection = require('../database')
         if(!err)
         {
             res.render("../views/projects.ejs", {data: rows})
+        }
+        else
+        {
+            console.log(err);
+        }
+    })
+   })
+
+   router.get("/:id/note", (req, res) =>{
+    mysqlConnection.query("SELECT proj_id, proj_title,  notes FROM crudproject.notes id, crudproject.projects WHERE proj_id =" + req.params.id + " and crudproject.projects.id = " + req.params.id, (err, rows, fields) =>{
+        if(!err)
+        {
+            res.render("../views/project-note.ejs", {data: rows})
         }
         else
         {
