@@ -137,16 +137,11 @@
       .table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: fixed;
         font-family: 'Roboto Flex', sans-serif;
         padding: 0;
         border: 1px solid #dede;
         background-color: #fff;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-      }
-
-      .notes-col {
-        width: 450px;
       }
       .thead-row {
         border-bottom: 1px solid #f2f2f2;
@@ -157,12 +152,6 @@
         line-height: 1.4;
         text-transform: uppercase;
         
-      }
-      .col-1, .col-2, .col-4, .col-5 {
-        width: 15%;
-      }
-      .col-3 {
-        width: 40%;
       }
       tbody tr {
         border-bottom: 1px solid #f2f2f2;
@@ -178,7 +167,6 @@
       }
       td {
         color: #666666;
-        word-wrap: break-word;
       }
       td a, td button {
         padding-right: 5px;
@@ -288,8 +276,6 @@
         left: 0;
         z-index: 1;
         background-color: #080f11e3;
-        display: none;
-        cursor: pointer;
       }
       .form-background-1, .form-background-2  {
         position: absolute;
@@ -299,12 +285,9 @@
         left: 0;
         z-index: 10;
         pointer-events: none;
+        display:flex;
         justify-content: center;
         align-items: center;
-        display: none;
-      }
-      .form-overlay.active, .form-background-1.active, .form-background-2.active{
-        display:flex;
       }
       .form-container{
         width: 400px;
@@ -345,6 +328,9 @@
         font-size: 13px;
         padding: 0 0.5rem;
       }
+      .control-group small {
+        color: #666666;
+      }
       .control-group textarea {
         margin-top: .25rem;
         width: 100%;
@@ -382,7 +368,11 @@
         margin-bottom: 1.5rem;
         transition: 0.2s all ease-in-out;
       }
-      .close-btn span:hover {
+      .close-btn a {
+        color: #666666;
+      }
+
+      .close-btn a:hover {
         color: #333333;
         cursor: pointer;
       }
@@ -416,66 +406,35 @@
 
 <body>
   <main class="main-wrapper">
-    <div class="form-overlay" onclick="addProjectToggle()">
-    </div>
-    <div class="form-background-1">
-      <div class="form-container">
-        <div class="close-section">
-          <div class="close-btn">
-            <span onclick="addProjectToggle()">Close</span>
-          </div>
-        </div>
-        <form class="addProjectForm" name="addProject" action="/notes/add" method="post" onsubmit="validate()">
-          <div class="control-group">
-              <label for="project_id">Project ID</label> <br>
-              <input type="number" name="project_id" id="project_id">
-          </div>
-          <div class="control-group">
-              <label for="notes">Notes</label> <br>
-              <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
-          </div>
-          <div class="control-group">
-              <label for="active_dt">Active Date</label> <br>
-              <input type="date" name="active_dt" id="active_dt">
-              <small>Date Format: yyyy-mm-dd</small>
-          </div>
-          <div class="submit-section">
-            <div class="controls">
-              <button type="submit">Add Notes</button>
-          </div>
-          </div>
-        </form>
-      </div>
+    <div class="form-overlay">
     </div>
     <div class="form-background-2">
       <div class="form-container">
         <div class="close-section">
           <div class="close-btn">
-            <span onclick="editProjectToggle()">Close</span>
+            <a href="/notes">Back</a>
           </div>
         </div>
-        <form class="editProjectForm" name="editProject" action="/projects/update/:id" method="post" onsubmit="validate()">
+        <form class="editProjectForm" name="editProject" action="/notes/edit/:id" method="post" onsubmit="validate()">
           <div class="control-group">
-              <label for="project_title">Project Title</label> <br>
-              <input type="text" name="project_title" id="project_title">
-          </div>
-          <div class="control-group">
-              <label for="project_desc">Project Description</label> <br>
-              <textarea name="project_desc" id="project_desc" cols="30" rows="10"></textarea>
-          </div>
-          <div class="control-group">
-              <label for="project_strt">Project Start</label> <br>
-              <input type="date" name="project_strt" id="project_strt">
-          </div>
-          <div class="control-group">
-              <label for="project_due">Project Due</label> <br>
-              <input type="date" name="project_due" id="project_due">
-          </div>
-          <div class="submit-section">
-            <div class="controls">
-              <button type="submit">Update Project</button>
-          </div>
-          </div>
+            <input type="hidden" name="id" value="<%= data[0].id %>"/>
+            <label for="project_id">Project ID</label> <br>
+            <input type="number" name="project_id" id="project_id">
+        </div>
+        <div class="control-group">
+            <label for="notes">Notes</label> <br>
+            <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        </div>
+        <div class="control-group">
+            <label for="active_dt">Active Date</label> <br>
+            <input type="text" name="active_dt" id="active_dt">
+            <small>Date Format: yyyy-mm-dd</small>
+        </div>
+        <div class="submit-section">
+          <div class="controls">
+            <button type="submit">Update Notes</button>
+        </div>
+        </div>
         </form>
       </div>
     </div>
@@ -494,8 +453,8 @@
       <div class="dashboard-navigation">
         <ul>
           <li>Dashboard</li>
-          <a href="/projects"><li>Projects</li></a>
-          <a href="/notes"><li class="active">Notes</li></a>
+          <a href="/projects"><li class="active">Projects</li></a>
+          <a href="/notes"><li>Notes</li></a>
           <li>Students</li>
           <li>Account</li>
         </ul>
@@ -508,24 +467,24 @@
             <span class="title-text">Dashboard</span> 
             <span class="dashboard-sep">&rsaquo;</span>
             <span>Projects</span>
-            <span class="dashboard-sep">&rsaquo;</span>
-            <span>Notes</span>
           </div>
         </div>
       </div>
       <div class="main-section-r2">
         <div class="main-section-r2-c1">
           <div class="controls">
-              <button onclick="addProjectToggle()">Add Notes</button>
+              <button onclick="addProjectToggle()">Add Project</button>
           </div>
           <div class="table-section">
             <table class="table">
             <thead>
               <tr class="thead-row">
-                <th class="col-1">ID#</th>
-                <th class="col-2">Project ID</th>
-                <th class="col-3">Project Notes</th>
-                <th class="col-4">Active Date</th>
+                <th>ID#</th>
+                <th>Project Title</th>
+                <th>Project Description</th>
+                <th>Notes</th>
+                <th>Project Start Date</th>
+                <th>Project Due Date</th>
               </tr>
             </thead>
             <tbody>
@@ -554,23 +513,17 @@
         </div>
     </div>
   </main>
-  
-
   <script>
-    var overlay = document.querySelector('.form-overlay');
-    var frmBG1 = document.querySelector('.form-background-1');
-    var frmBG2 = document.querySelector('.form-background-2');
-    var click = false;
-    function addProjectToggle() {
-      overlay.classList.toggle('active');
-      frmBG1.classList.toggle('active');
-    }
-    function editProjectToggle() {
-      overlay.classList.toggle('active');
-      frmBG2.classList.toggle('active');
-    }
+    document.getElementById('project_id').value = "<%= data[0].proj_id %>"
+    document.getElementById('notes').value = "<%= data[0].notes %>"
 
-      
+    let activeDate = "<%= new Date(data[0].active_dt).toLocaleDateString() %>"
+    let dateArray = activeDate.split("/");
+    let strtDay = dateArray[0]
+    let strtMon = dateArray[1]
+    let strtYr = dateArray[2]
+    let newstrtDate =  `${strtYr}-${strtDay}-${strtMon}`
+    document.getElementById('active_dt').value = newstrtDate
   </script>
 </body>
 </html>

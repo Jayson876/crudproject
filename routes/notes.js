@@ -76,11 +76,11 @@ router.get("/", (req, res) =>{
     })
 }); 
 
-  router.get("/edit/:id", (req, res) =>{
-    mysqlConnection.query('SELECT * FROM crudproject.projects WHERE Id='+ req.params.id, (err, rows, fields) =>{
+router.get("/edit/:id", (req, res) =>{
+    mysqlConnection.query('SELECT * FROM crudproject.notes WHERE Id='+ req.params.id, (err, rows, fields) =>{
         if(!err)
         {
-            res.render("../views/projects-edit.ejs", {data: rows})
+            res.render("../views/notes-edit.ejs", {data: rows})
         }
         else
         {
@@ -91,15 +91,14 @@ router.get("/", (req, res) =>{
 
    router.post('/edit/:id', function(req, res) {
         
-        var sql = "UPDATE crudproject.projects SET proj_title ='" + req.body.project_title + 
-        "', proj_desc ='" + req.body.project_desc + 
-        "', proj_strt ='" +  req.body.project_strt + 
-        "', proj_due ='" + req.body.project_due + 
+        var sql = "UPDATE crudproject.notes SET proj_id ='" + req.body.project_id + 
+        "', notes ='" + req.body.notes + 
+        "', active_dt ='" +  req.body.active_dt + 
         "' WHERE id = " + req.body.id
         mysqlConnection.query(sql, (err, rows, fields) =>{
             if(!err)
             {
-                res.redirect('/projects')
+                res.redirect('/notes')
                 
             }
             else
