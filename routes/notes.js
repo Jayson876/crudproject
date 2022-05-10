@@ -61,20 +61,20 @@ router.get("/", (req, res) =>{
 
    router.post('/add', function(req, res) {
         
-        var sql = "INSERT INTO crudproject.projects (`proj_title`, `proj_desc`, `proj_strt`, `proj_due`) VALUES ('" + req.body.project_title + "', '" + req.body.project_desc + "', '" + req.body.project_strt + "', '" + req.body.project_due + "')"
-        
-        mysqlConnection.query(sql, (err, rows, fields) =>{
-            if(!err)
-            {
-                res.redirect('/projects')
-                
-            }
-            else
-            {
-                console.log(err);
-            }
-        })
-  }); 
+    var sql = "INSERT INTO crudproject.notes (`proj_id`, `notes`, `active_dt`) VALUES ('" + req.body.project_id + "', '" + req.body.notes + "', '" + req.body.active_dt + "')"
+    
+    mysqlConnection.query(sql, (err, rows, fields) =>{
+        if(!err)
+        {
+            res.redirect('/notes')
+            
+        }
+        else
+        {
+            console.log(err);
+        }
+    })
+}); 
 
   router.get("/edit/:id", (req, res) =>{
     mysqlConnection.query('SELECT * FROM crudproject.projects WHERE Id='+ req.params.id, (err, rows, fields) =>{
